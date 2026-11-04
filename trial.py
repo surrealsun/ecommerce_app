@@ -8,7 +8,19 @@ import seriousdb
 
 print(f"Count: {seriousdb.count()}")
 
-print(seriousdb.get_all())
+# print(seriousdb.get_all())
+
+result =  [
+        {
+            "id": item_id,
+            "name": seriousdb.get(item_id)[0],
+            "price": seriousdb.get(item_id)[1],
+            "available": seriousdb.get(item_id)[2],
+        }
+        for item_id in seriousdb.get_all()
+    ]
+
+print(result)
 
 
 

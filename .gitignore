@@ -3,3 +3,7 @@ uv.lock
 /__pycache__
 
 .env
+
+
+*.sdb
+*.sdb.wal
