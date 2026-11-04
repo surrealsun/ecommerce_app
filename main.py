@@ -1,6 +1,15 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5173", "http://127.0.0.1:5173"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 products: dict[int, tuple[str, float, bool]] = {
     5001: ("Organic Whole Milk (1 Gallon)", 4.89, True),
@@ -23,15 +32,15 @@ def get_home_page():
 
 @app.get("/products")
 def get_products():
-    result = ""
-    for id in products.keys():
-        print(
-            f"Item ID: {id}, Product Name: {products[id][0]}, Price: {products[id][1]}, Available : {products[id][2]} "
-        )
-        product_str = f"Item ID: {id}, Product Name: {products[id][0]}, Price: {products[id][1]}, Available : {products[id][2]};"
-        result += product_str
-
-    return result
+    return [
+        {
+            "id": item_id,
+            "name": product[0],
+            "price": product[1],
+            "available": product[2],
+        }
+        for item_id, product in products.items()
+    ]
 
 
 @app.get("/items/{item_id}")
@@ -41,10 +50,10 @@ def get_item(item_id: int):
 
 @app.post("/create")
 def add_item(product_name: str, price: float):
-    global curr_id
-    item_id = curr_id + 1
-    products[item_id] = (product_name, price)
-    curr_id += 1
+    global curr_item_id
+    curr_item_id += 1
+    products[curr_item_id] = (product_name, price, True)
+    item_id = curr_item_id
     return f"Created with id {item_id}"
 
 
@@ -68,15 +77,15 @@ def order_item(item_id: int, quantity: int = 1):
 
 @app.get("/orders")
 def get_orders():
-    result = ""
-    for id in orders.keys():
-        print(
-            f"Order ID: {id}, Product ID: {orders[id][0]}, Product Name: {products[orders[id][0]][0]}, Quantity: {orders[id][1]} "
-        )
-        product_str = f"Order ID: {id}, Product ID: {orders[id][0]}, Product Name: {products[orders[id][0]][0]}, Quantity: {orders[id][1]};"
-        result += product_str
-
-    return result
+    return [
+        {
+            "id": order_id,
+            "product_id": order[0],
+            "product_name": products[order[0]][0],
+            "quantity": order[1],
+        }
+        for order_id, order in orders.items()
+    ]
 
 
 # def main():
