@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+import seriousdb
 
 app = FastAPI()
 
@@ -10,6 +11,14 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+
+seriousdb.set(5001, ("Organic Whole Milk (1 Gallon)", 4.89, True)) # type: ignore
+seriousdb.set(5002, ("Whole Wheat Bread", 3.29, True)) # pyright: ignore[reportArgumentType]
+seriousdb.set(5003, ("Fresh Honeycrisp Apples (1 lb)", 2.49, True)) # pyright: ignore[reportArgumentType]
+seriousdb.set(5004, ("Large Brown Eggs (12 count)", 3.99, True)) # type: ignore
+seriousdb.set(5005, ("Greek Yogurt (32 oz)", 5.49, False)) # type: ignore
+
 
 products: dict[int, tuple[str, float, bool]] = {
     5001: ("Organic Whole Milk (1 Gallon)", 4.89, True),

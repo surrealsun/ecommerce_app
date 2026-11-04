@@ -1,0 +1,19 @@
+{"op": "set", "key": 5001, "value": ""}
+{"op": "set", "key": 5001, "value": ["Organic Whole Milk (1 Gallon)", 4.89, true]}
+{"op": "set", "key": 5001, "value": ["Organic Whole Milk (1 Gallon)", 4.89, true]}
+{"op": "set", "key": 5001, "value": ["Organic Whole Milk (1 Gallon)", 4.89, true]}
+{"op": "set", "key": 5001, "value": ["Organic Whole Milk (1 Gallon)", 4.89, true]}
+{"op": "set", "key": "1", "value": "One"}
+{"op": "delete", "key": "1"}
+{"op": "set", "key": "1", "value": "One"}
+{"op": "set", "key": 1, "value": "First"}
+{"op": "set", "key": 1, "value": ["Organic Whole Milk (1 Gallon)", 4.89, true]}
+{"op": "delete", "key": 5001}
+{"op": "delete", "key": "1"}
+{"op": "delete", "key": 1}
+{"op": "set", "key": 5001, "value": ["Organic Whole Milk (1 Gallon)", 4.89, true]}
+{"op": "set", "key": 5001, "value": ["Organic Whole Milk (1 Gallon)", 4.89, true]}
+{"op": "set", "key": 5002, "value": ["Whole Wheat Bread", 3.29, true]}
+{"op": "set", "key": 5003, "value": ["Fresh Honeycrisp Apples (1 lb)", 2.49, true]}
+{"op": "set", "key": 5004, "value": ["Large Brown Eggs (12 count)", 3.99, true]}
+{"op": "set", "key": 5005, "value": ["Greek Yogurt (32 oz)", 5.49, false]}
